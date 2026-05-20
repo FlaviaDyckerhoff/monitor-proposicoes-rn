@@ -6,6 +6,7 @@ const EMAIL_REMETENTE = process.env.EMAIL_REMETENTE;
 const EMAIL_SENHA = process.env.EMAIL_SENHA;
 const ARQUIVO_ESTADO = 'estado.json';
 const API_BASE = 'https://api-transparencialegislativa.al.rn.leg.br/elegis-api-transp-legislativa';
+const PORTAL_BASE = 'https://transparencialegislativa.al.rn.leg.br';
 
 function carregarEstado() {
   if (fs.existsSync(ARQUIVO_ESTADO)) {
@@ -36,7 +37,7 @@ async function enviarEmail(novas) {
     const rows = porTipo[tipo].map(p =>
       `<tr>
         <td style="padding:8px;border-bottom:1px solid #eee;color:#555;font-size:12px">${p.tipo || '-'}</td>
-        <td style="padding:8px;border-bottom:1px solid #eee"><strong>${p.numero || '-'}/${p.ano || '-'}</strong></td>
+        <td style="padding:8px;border-bottom:1px solid #eee"><strong><a href="${p.url || PORTAL_BASE}" style="color:#1a3a5c;text-decoration:none">${p.numero || '-'}/${p.ano || '-'}</a></strong></td>
         <td style="padding:8px;border-bottom:1px solid #eee;font-size:12px">${p.autor || '-'}</td>
         <td style="padding:8px;border-bottom:1px solid #eee;font-size:12px;white-space:nowrap">${p.data || '-'}</td>
         <td style="padding:8px;border-bottom:1px solid #eee;font-size:12px">${p.ementa || '-'}</td>
@@ -147,6 +148,7 @@ function normalizarProposicao(p) {
     autor,
     data,
     ementa: (p.ementa || '-').substring(0, 200),
+    url: `${PORTAL_BASE}/processo/${p.id}`,
   };
 }
 
