@@ -49,7 +49,7 @@ async function enviarEmail(novas) {
   const html = `
     <div style="font-family:Arial,sans-serif;max-width:900px;margin:0 auto">
       <h2 style="color:#1a3a5c;border-bottom:2px solid #1a3a5c;padding-bottom:8px">
-        🏛️ ALERN — ${novas.length} nova(s) proposição(ões)
+        🏛️ Assembleia Legislativa do Rio Grande do Norte — ${novas.length} nova(s) proposição(ões)
       </h2>
       <p style="color:#666">Monitoramento automático — ${new Date().toLocaleString('pt-BR')}</p>
       <table style="width:100%;border-collapse:collapse;font-size:14px">
@@ -71,9 +71,9 @@ async function enviarEmail(novas) {
   `;
 
   await transporter.sendMail({
-    from: `"Monitor ALERN" <${EMAIL_REMETENTE}>`,
+    from: `"Monitor Rio Grande do Norte" <${EMAIL_REMETENTE}>`,
     to: EMAIL_DESTINO,
-    subject: `🏛️ ALERN: ${novas.length} nova(s) proposição(ões) — ${new Date().toLocaleDateString('pt-BR')}`,
+    subject: `🏛️ Rio Grande do Norte: ${novas.length} nova(s) proposição(ões) — ${new Date().toLocaleDateString('pt-BR')}`,
     html,
   });
 
