@@ -273,7 +273,7 @@ function normalizarProposicao(p) {
     autor,
     data,
     ementa: (p.ementa || '-'),
-    url: `${PORTAL_BASE}/processo/${p.id}`,
+    url: `${PORTAL_BASE}/projeto/${p.id}`,
   };
 }
 
